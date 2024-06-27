@@ -1,0 +1,42 @@
+<div class="shadow p-4 bordered transparent">
+<div class="flex">
+    <h2 class="text-xl font semibold"> Hallgatók</h2>
+
+<table class="w-full">
+    <thead class="w-full">
+        <tr>
+            <th>id</th>
+            <th>Név</th>
+            <th>jegy</th>
+            <th>osztály</th>
+            <th>tantárgy</th>
+            <th>Kezelő</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @for(student of students; track $index) {
+            <tr>
+                <td>{{ student._id}}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.mark }}</td>
+                <td>{{ student.class }}</td>
+                <td><span *ngFor="let subjectId of student.subjects; let last = last">
+                    {{ getSubjectName(subjectId) }}<span *ngIf="!last">, </span>
+                  </span></td>
+                <td>
+                    <button mat-raised-button color="accent" class="mr-4" [routerLink]="'/students/' + student._id"
+                        >Módosítás</button>
+                    <button mat-raised-button color="warn"
+                        (click)="delete(student._id!)">Törlés</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<div><button mat-raised-button color="secondary" routerLink="/students/add"> hozzáadás</button></div>
+
+
+<p *ngIf="averageMark !== null">Átlagos eredmény: {{ averageMark }}</p>

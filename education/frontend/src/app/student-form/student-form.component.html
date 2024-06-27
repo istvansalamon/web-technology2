@@ -1,0 +1,40 @@
+<div class="shadow p-4 bordered">
+    <div>
+        <h4>Tanuló adatok</h4>
+    </div>
+</div>
+
+<div class="shadow p-4 bordered">
+    <h4>{{ editStudentId ? 'Tanuló adatok frissítése' : 'Tanuló hozzáadása' }}</h4>
+    <form [formGroup]="studentForm">
+        <div class="flex flex-wrap">
+            <mat-form-field class="w-full">
+                <mat-label>Név</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Érdemjegy</mat-label>
+                <input type="number" matInput formControlName="mark">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Tankör</mat-label>
+                <input type="text" matInput formControlName="class">
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+                <mat-label>Tantárgyak</mat-label>
+                <mat-select formControlName="subject" multiple>
+                    <mat-option *ngFor="let subject of subjects" [value]="subject._id">
+                        {{ subject.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="editStudentId ? updateStudent() : addStudent()">
+            {{ editStudentId ? 'Módosít' : 'Hozzáad' }}
+        </button>
+    </form>
+</div>

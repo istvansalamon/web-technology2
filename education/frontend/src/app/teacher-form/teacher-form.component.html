@@ -1,0 +1,52 @@
+
+
+<div class="shadow p-4 bordered">
+    <div >
+        <h4>Tanár adatok</h4>
+        
+    </div>
+</div>
+
+<div class="shadow p-4 bordered">
+    @if(editTeacherId ){
+        <h4>Tanár adatok frissítése</h4>
+    }@else{
+        <h4>Tanár hozzáadása</h4>
+    }
+        <form [formGroup]="teacherForm">
+            <div class="flex flex-wrap">
+                    
+
+                     <mat-form-field class="w-full">
+                    <mat-label>Nev</mat-label>
+                    <input type="text" matInput formControlName="name">
+                     </mat-form-field>
+                   
+         
+                    <mat-form-field class="w-full">
+                        <mat-label>Tanszék</mat-label>
+                        <input type="text" matInput formControlName="department">
+                      </mat-form-field>
+                    
+
+                    <mat-form-field class="w-full">
+                         <mat-label>Tárgy</mat-label>
+                         <input type="text" matInput formControlName="subject">
+                        </mat-form-field>                     
+    
+                    </div>
+                    
+                    @if(editTeacherId ){
+                        <button mat-raised-button color="secondary" (click)="updateTeacher()"> módosít</button>
+                    }@else{
+                        <button mat-raised-button color="secondary" (click)="addTeacher()"> hozzáad</button>
+                    }
+
+        </form>
+    
+</div>
+
+
+<div >
+<button mat-raised-button color="secondary" (click)="addTeacher()"> mentés</button>
+</div>
